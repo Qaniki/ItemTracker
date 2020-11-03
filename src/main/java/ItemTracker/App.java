@@ -12,6 +12,7 @@ public class App {
     public int getYear(){
         return this.setyear;
     }
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
