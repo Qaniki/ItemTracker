@@ -28,6 +28,9 @@ public class Item implements Comparable<Item> {
         this.year = year;
         this.type = type;
     }
+    /**
+     * Get name of item
+     */
     public String getName() {
         return name;
     }
