@@ -2,7 +2,7 @@ package ItemTracker;
 import java.util.Scanner;
 public class App {
     private int setyear;
-
+    // TODO: something
     public App() {
         this.setyear = 2020;
     }
@@ -12,7 +12,7 @@ public class App {
     public int getYear(){
         return this.setyear;
     }
-    
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
