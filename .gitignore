@@ -4,3 +4,5 @@
 # Ignore Gradle build output directory
 build
 .vscode/settings.json
+.DS_Store
+.settings/org.eclipse.buildship.core.prefs
