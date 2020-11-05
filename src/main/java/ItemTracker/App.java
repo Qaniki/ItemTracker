@@ -15,11 +15,10 @@ public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        ItemTracker it = startingItems();
+        ItemTracker it = addStartingItems();
         App app = new App();
-
-        Intro();
+        System.out.println("\n\nWelcome to Item Tracker 420");
+        commandDisplay();
 
         String command = sc.nextLine().toLowerCase();
 
@@ -28,14 +27,15 @@ public class App {
                 it.printAll();
             }
             if(command.equals("command")||command.equals("commands")){
-                Intro();
+                commandDisplay();
             }
             if(command.equals("wealth")){
                 int sum = 0;
                 for(Item item : it.getItems()){
                     sum += item.getCurrentPrice(app.getYear());
                 }
-                System.out.println("The total value(value in "+app.getYear()+") of all items being tracked is "+sum);
+                System.out.println("The total value(value in "+app.getYear()+
+                ") of all items being tracked is "+sum);
             }
             if(command.equals("set year")||command.equals("set")){
                 System.out.println("Insert Year:");
@@ -106,7 +106,7 @@ public class App {
                     System.out.println("Price to search:");
                     Double searchprice = Double.valueOf(sc.nextLine());
                     it.getItems().stream()
-                    .filter(t -> t.getPrice() > searchprice)
+                    .filter(t -> t.getPrice() < searchprice)
                     .map(Item::toString)
                     .forEach(System.out::println);
                 }
@@ -116,19 +116,18 @@ public class App {
         sc.close();
     }
 
-    public static ItemTracker startingItems(){
+    public static ItemTracker addStartingItems(){
         Item item1 = new Item("Iphone XR", "Iphone from Apple of the XR variaty", 6000.0, 2018, "Gadget");
         Item item2 = new Item("Gold Bar", "Gold bar made from melted gold", 10000.0, 2000, "Metal");
         Item item3 = new Item("Common Project", "Original Achilles, White", 2500.0, 2020, "Shoe");
-        ItemTracker it = new ItemTracker();
-        it.addItem(item1);
-        it.addItem(item2);
-        it.addItem(item3);
-        return it;
+        ItemTracker itemTracker = new ItemTracker();
+        itemTracker.addItem(item1);
+        itemTracker.addItem(item2);
+        itemTracker.addItem(item3);
+        return itemTracker;
     }
 
-    public static void Intro(){
-        System.out.println("\n\nWelcome to Item Tracker 3000");
+    public static void commandDisplay(){
         System.out.printf("Commands:\nSearch - Search for items\nStop - stops the program\n");
         System.out.printf("List - List all items\nWealth - Sums of values of all items\n");
         System.out.printf("Add - Add new item\nRemove - Remove an item\n");

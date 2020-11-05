@@ -42,3 +42,8 @@ test {
     // Use junit platform for unit tests
     useJUnitPlatform()
 }
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
