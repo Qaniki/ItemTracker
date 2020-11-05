@@ -1,28 +1,58 @@
 package ItemTracker;
 import java.util.Scanner;
 public class App {
-    private int setyear;
-    // TODO: something
+    private int setYear;
+    private ItemTracker itemTracker;
+    // TODO: generate tests
     public App() {
-        this.setyear = 2020;
+        this.setYear = 2020;
+        this.itemTracker = addStartingItems();
     }
     public void setYear(int year){
-        this.setyear = year;
+        this.setYear = year;
     }
     public int getYear(){
-        return this.setyear;
+        return this.setYear;
+    }
+    public void setYear(ItemTracker itemTracker){
+        this.itemTracker = itemTracker;
+    }
+    public ItemTracker getItemTracker(){
+        return this.itemTracker;
+    }
+
+    private ItemTracker addStartingItems(){
+        Item item1 = new Item("Iphone XR", "Iphone from Apple of the XR variaty", 6000.0, 2018, "Gadget");
+        Item item2 = new Item("Gold Bar", "Gold bar made from melted gold", 10000.0, 2000, "Metal");
+        Item item3 = new Item("Common Project", "Original Achilles, White", 2500.0, 2020, "Shoe");
+        ItemTracker itemTracker = new ItemTracker();
+        itemTracker.addItem(item1);
+        itemTracker.addItem(item2);
+        itemTracker.addItem(item3);
+        return itemTracker;
+    }
+
+    private void commandDisplay(){
+        System.out.printf("Commands:\nSearch - Search for items\nStop - stops the program\n");
+        System.out.printf("List - List all items\nWealth - Sums of values of all items\n");
+        System.out.printf("Add - Add new item\nRemove - Remove an item\n");
+        System.out.printf("Set year - Set current year. default 2020\nCommands - Go back to command\n");
+        System.out.println("\n\nEnter command:");
+    }
+
+    private void start(){
+        System.out.println("\n\nWelcome to Item Tracker 420");
+        commandDisplay();
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ItemTracker it = addStartingItems();
         App app = new App();
-        System.out.println("\n\nWelcome to Item Tracker 420");
-        commandDisplay();
 
         String command = sc.nextLine().toLowerCase();
 
         while(!command.equals("stop")){
+            
             if(command.equals("list")){
                 it.printAll();
             }
@@ -39,7 +69,7 @@ public class App {
             }
             if(command.equals("set year")||command.equals("set")){
                 System.out.println("Insert Year:");
-                app.setyear = Integer.valueOf(sc.nextLine());
+                app.setYear = Integer.valueOf(sc.nextLine());
                 System.out.println("The year is set to " + app.getYear());
             }
             if(command.equals("add")){
@@ -116,24 +146,9 @@ public class App {
         sc.close();
     }
 
-    public static ItemTracker addStartingItems(){
-        Item item1 = new Item("Iphone XR", "Iphone from Apple of the XR variaty", 6000.0, 2018, "Gadget");
-        Item item2 = new Item("Gold Bar", "Gold bar made from melted gold", 10000.0, 2000, "Metal");
-        Item item3 = new Item("Common Project", "Original Achilles, White", 2500.0, 2020, "Shoe");
-        ItemTracker itemTracker = new ItemTracker();
-        itemTracker.addItem(item1);
-        itemTracker.addItem(item2);
-        itemTracker.addItem(item3);
-        return itemTracker;
-    }
+    
 
-    public static void commandDisplay(){
-        System.out.printf("Commands:\nSearch - Search for items\nStop - stops the program\n");
-        System.out.printf("List - List all items\nWealth - Sums of values of all items\n");
-        System.out.printf("Add - Add new item\nRemove - Remove an item\n");
-        System.out.printf("Set year - Set current year. default 2020\nCommands - Go back to command\n");
-        System.out.println("\n\nEnter command:");
-    }
+   
 
     
 }
