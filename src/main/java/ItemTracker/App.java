@@ -4,22 +4,17 @@ public class App {
     private ItemTracker itemTracker;
     private Scanner reader;
     // TODO: generate tests
+
     public App() {
         this.reader = new Scanner(System.in);
         this.itemTracker = addStartingItems();
-    }
-    public void setItemTracker(ItemTracker itemTracker){
-        this.itemTracker = itemTracker;
-    }
-    public ItemTracker getItemTracker(){
-        return this.itemTracker;
     }
 
     public void start(){
         System.out.println("\n\nWelcome to Item Tracker 420");
         commandDisplay();
         boolean endProgram = false;
-        while (!endProgram) {
+        while(!endProgram) {
             String command = reader.nextLine().toLowerCase();
             endProgram = processInput(command);
         }
@@ -44,7 +39,7 @@ public class App {
                 break;
 
             case "set year":
-                setYearApp(Integer.valueOf(reader.nextLine()));
+                setYearApp();
                 break;
             
             case "add":
@@ -63,7 +58,7 @@ public class App {
                 toQuit = true;
                 break;
 
-            default :
+            default:
                 System.out.println("Unknown command");
                 break;
         }
@@ -71,27 +66,16 @@ public class App {
     }
 
     private void commandDisplay(){
-        System.out.printf("Commands:\nSearch - Search for items\nStop - stops the program\n");
+        System.out.printf("Commands:\nSearch - Search for items\nQuit - Quit the program\n");
         System.out.printf("List - List all items\nWealth - Sums of values of all items\n");
         System.out.printf("Add - Add new item\nRemove - Remove an item\n");
         System.out.printf("Set year - Set current year. default 2020\nCommands - Go back to command list\n");
         System.out.println("\n\nEnter command:");
     }
 
-    private ItemTracker addStartingItems(){
-        Item item1 = new Item("Iphone XR", "Iphone from Apple of the XR variaty", 6000.0, 2018, "Gadget");
-        Item item2 = new Item("Gold Bar", "Gold bar made from melted gold", 10000.0, 2000, "Metal");
-        Item item3 = new Item("Common Project", "Original Achilles, White", 2500.0, 2020, "Shoe");
-        ItemTracker itemTracker = new ItemTracker();
-        itemTracker.addItem(item1);
-        itemTracker.addItem(item2);
-        itemTracker.addItem(item3);
-        return itemTracker;
-    }
-
-    private void setYearApp(int year){
+    private void setYearApp(){
         System.out.println("Insert Year:");
-        itemTracker.setYear(year);
+        itemTracker.setYear(Integer.valueOf(reader.nextLine()));
         System.out.println("The year is set to " + itemTracker.getYear());
     }
 
@@ -163,7 +147,18 @@ public class App {
                 break;
         }
     }
-    
+
+    private ItemTracker addStartingItems(){
+        Item item1 = new Item("Iphone XR", "Iphone from Apple of the XR variaty", 6000.0, 2018, "Gadget");
+        Item item2 = new Item("Gold Bar", "Gold bar made from melted gold", 10000.0, 2000, "Metal");
+        Item item3 = new Item("Common Project", "Original Achilles, White", 2500.0, 2020, "Shoe");
+        ItemTracker itemTracker = new ItemTracker();
+        itemTracker.addItem(item1);
+        itemTracker.addItem(item2);
+        itemTracker.addItem(item3);
+        return itemTracker;
+    }
+
     public static void main(String[] args) {
         App app = new App();
         app.start();
