@@ -7,7 +7,7 @@ package ItemTracker;
  * @see     ItemTracker
  * @version   1.0
  */
-public class Item implements Comparable<Item> {
+    class Item implements Comparable<Item> {
     private String name;
     private String description;
     private double price;
