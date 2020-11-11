@@ -91,7 +91,8 @@ public class App {
         System.out.println("Type/category:");
         String itemType = reader.nextLine();
         itemType = itemType.substring(0,1).toUpperCase() + itemType.substring(1).toLowerCase();
-        itemTracker.addItem(new Item(itemName, itemDescription, itemPrice, itemYear, itemType));
+        itemTracker.addItem(new Item.Builder(itemName, itemType)
+        .price(itemPrice).year(itemYear).description(itemDescription).build());
         System.out.println("The item " + itemName + " is added.");
     }
     private void removeItemApp(){
@@ -149,9 +150,14 @@ public class App {
     }
 
     private ItemTracker addStartingItems(){
-        Item item1 = new Item("Iphone XR", "Iphone from Apple of the XR variaty", 6000.0, 2018, "Gadget");
-        Item item2 = new Item("Gold Bar", "Gold bar made from melted gold", 10000.0, 2000, "Metal");
-        Item item3 = new Item("Common Project", "Original Achilles, White", 2500.0, 2020, "Shoe");
+        Item item1 = new Item.Builder("Iphone XR", "Gadget")
+        .price(6000.0).year(2018).description("Iphone from Apple of the XR variaty").build();
+        Item item2 = new Item.Builder("Gold Bar", "Metal")
+        .price(10000.0).year(2000).description("Gold bar made from melted gold").build();
+        Item item3 = new Item.Builder("Common Project", "Shoe")
+        .price(2500.0).year(2020).description("Original Achilles, White").build();
+        
+        
         ItemTracker itemTracker = new ItemTracker();
         itemTracker.addItem(item1);
         itemTracker.addItem(item2);

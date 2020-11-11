@@ -7,12 +7,12 @@ package ItemTracker;
  * @see     ItemTracker
  * @version   1.0
  */
-    class Item implements Comparable<Item> {
-    private String name;
-    private String description;
-    private double price;
-    private int year;
-    private String type;
+public class Item implements Comparable<Item> {
+    private final String name;
+    private final String description;
+    private final double price;
+    private final int year;
+    private final String type;
 
     private static final double AnnualDepreciationGadget = 0.30;
     private static final double AnnualDepreciationMetal = -0.05;
@@ -28,13 +28,46 @@ package ItemTracker;
      * @param  year Year of purchase
      * @param  type The type of the item, ie. Gadget, Shoe
      */
-    public Item(String name, String description, Double price, int year, String type) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.year = year;
-        this.type = type;
+
+    public static class Builder{
+        private final String name;
+        private final String type;
+        private double price = 0;
+        private int year = 0;
+        private String description = "";
+        public Builder(String name, String type) {
+            this.name = name;
+            this.type = type;
+        }
+        public Builder price(double value){
+            price = value; 
+            return this; 
+        }
+        public Builder year(int value){
+            year = value; 
+            return this; 
+        }
+        public Builder description(String string){
+            description = string; 
+            return this; 
+        }
+        public Item build() {
+        return new Item(this);
+        }
     }
+    private Item(Builder builder) {
+        name = builder.name;
+        description = builder.description;
+        price = builder.price;
+        year = builder.year;
+        type = builder.type;
+    }
+    public static void main(String[] args) {
+        Item itemtest = new Builder("Common Project", "Shoe")
+        .price(3000.0).year(2020).description("Original").build();
+        System.out.println(itemtest);
+    }
+
     /**
      * Get the name of item
      * @return name of item
@@ -46,9 +79,6 @@ package ItemTracker;
      * Set the name of item
      * @param name The name to change into
      */
-    public void setName(String name) {
-        this.name = name;
-    }
     /**
      * Get the description of item
      * @return description of item
@@ -60,9 +90,6 @@ package ItemTracker;
      * Set the description of item
      * @param description The description to change into
      */
-    public void setDescription(String description) {
-        this.description = description;
-    }
     /**
      * Get the price of item at the time of purchase
      * @return price of item
@@ -74,9 +101,6 @@ package ItemTracker;
      * Set the price of item
      * @param price The price to change into
      */
-    public void setPrice(double price) {
-        this.price = price;
-    }
     /**
      * Get the year of purchase of item
      * @return year of purchase
@@ -88,9 +112,7 @@ package ItemTracker;
      * Set the year of purchase of item
      * @param price The year to change into
      */
-    public void setYear(int year) {
-        this.year = year;
-    }
+
     /**
      * Get the type of item
      * @return type of item
@@ -102,9 +124,7 @@ package ItemTracker;
      * Set the type of item
      * @param type The type to change into
      */
-    public void setType(String type) {
-        this.type = type;
-    }
+
     /**
      * String representation of item
      */
