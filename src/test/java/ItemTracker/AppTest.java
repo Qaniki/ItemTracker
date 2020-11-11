@@ -8,7 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
     @Test void appHasAGreeting() {
-        App classUnderTest = new App();
+        Item itemUnderTest = new Item("www", "www", 3.0 , 5, "Shoe");
+        assertEquals(3.0, itemUnderTest.getPrice());
+    }
+    @Test void appHasAGreeting2() {
+        System.out.println("is it running m9");
         //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 }
